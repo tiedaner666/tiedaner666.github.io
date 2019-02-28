@@ -1,39 +1,63 @@
-<!DOCTYPE html><html lang="en-us"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"><title>hexo搭建并部署到github | Hexo</title><meta name="description"><meta name="generator" content="Hexo"><meta name="author" content="John Doe"><meta name="keywords" content="sjaak van den berg, svdb, bitcoin, crypto, payment, integration, bitcoins, wordpress, betaling, webshop, front end, design, ontwerp, developer"><meta name="HandheldFriendly" content="True"><meta name="MobileOptimized" content="320"><meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1,user-scalable=0"><link rel="stylesheet" type="text/css" href="/styles/screen.css"><link rel="apple-touch-icon" sizes="57x57" href="/images/apple-touch-icon-57x57.png"><link rel="apple-touch-icon" sizes="60x60" href="/images/apple-touch-icon-60x60.png"><link rel="apple-touch-icon" sizes="72x72" href="/images/apple-touch-icon-72x72.png"><link rel="apple-touch-icon" sizes="76x76" href="/images/apple-touch-icon-76x76.png"><link rel="apple-touch-icon" sizes="114x114" href="/images/apple-touch-icon-114x114.png"><link rel="apple-touch-icon" sizes="120x120" href="/images/apple-touch-icon-120x120.png"><link rel="apple-touch-icon" sizes="144x144" href="/images/apple-touch-icon-144x144.png"><link rel="apple-touch-icon" sizes="152x152" href="/images/apple-touch-icon-152x152.png"><link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-180x180.png"><link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16.png"><link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32.png"><link rel="icon" type="image/png" sizes="96x96" href="/images/favicon-96x96.png"><link rel="icon" type="image/png" sizes="160x160" href="/images/favicon-160x160.png"><link rel="icon" type="image/png" sizes="192x192" href="/images/favicon-192x192.png"><meta name="msapplication-TileColor" content="#121315"><meta name="msapplication-TileImage" content="/images/mstile-144x144.png"></head><body itemscope itemtype="https://schema.org/WebPage"><header itemscope itemtype="https://schema.org/WPHeader"><a href="/"><img src="/images/svdb.png" alt="Hexo" title="Hexo"></a><h1><a href="/" alt="Hexo" title="Hexo" itemprop="headline">Hexo</a></h1><p itemprop="description"></p><nav itemscope itemtype="https://schema.org/SiteNavigationElement"><ul><li itemprop="name"><a href="/" alt="Home" title="Home" itemprop="url">Home</a></li><li itemprop="name"><a href="/articles" alt="Articles" title="Articles" itemprop="url">Articles</a></li><li itemprop="name"><a href="/about" alt="About" title="About" itemprop="url">About</a></li></ul></nav><div class="space"></div></header><main itemscope itemtype="https://schema.org/Blog"><article class="full"><h1 itemprop="headline">hexo搭建并部署到github</h1><span class="post-meta">Published on<time itemprop="datePublished" datetime="2019-02-27T06:03:06.000Z"> Wednesday, February 27th 2019 at 14:03</time><br>Last updated on<time itemprop="dateModified" datetime="2019-02-27T06:03:06.000Z"> Thursday, February 28th 2019 at 10:28</time></span><h6 id="1-安装Git"><a href="#1-安装Git" class="headerlink" title="1. 安装Git"></a>1. 安装Git</h6><h6 id="2-安装Node-js"><a href="#2-安装Node-js" class="headerlink" title="2. 安装Node.js"></a>2. 安装Node.js</h6><h6 id="3-安装Hexo"><a href="#3-安装Hexo" class="headerlink" title="3. 安装Hexo"></a>3. 安装Hexo</h6><p>   以上三步参考hexo官网文档即可；以windows系统为例，下载安装Git和Node.js之后，可以直接在系统自带的命令行里运行<code>npm install -g hexo-cli</code>安装hexo。</p>
-<h6 id="4-Github创建仓库"><a href="#4-Github创建仓库" class="headerlink" title="4. Github创建仓库"></a>4. Github创建仓库</h6><p>   创建仓库时，如果打算使用Github Pages 托管自定义域名的网站，建议仓库的名字使用：你的Github用户名.github.io格式。创建成功之后，顺带复制一下ssh连接的地址，为下步做准备。</p>
-<h6 id="5-生成SSH添加到Github"><a href="#5-生成SSH添加到Github" class="headerlink" title="5. 生成SSH添加到Github"></a>5. 生成SSH添加到Github</h6><ol>
-<li><p>建立ssh连接之前，先使用git命令行关联一下Github的账户，不只是现在用，别的软件（比如pycharm、vs）要使用Github托管代码时都要这么做。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">git config --global user.name &quot;yourname&quot;</span><br><span class="line">git config --global user.email &quot;youremail&quot;</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>然后创建ssh：<code>ssh-keygen -t rsa -C &quot;youremail&quot;</code> ,创建成功后，在c盘你的用户名的文件夹下会创建一个.ssh的文件夹，将里面的id_rsa.pub的内容复制下来。<br>注意：有可能id_rsa.pub文件打不开，即使使用微软publisher也打不开，没关系，使用安装了publisher的电脑上的word也能打开</p>
-</li>
-<li>最后，找到Github网站右上角用户图标下拉栏里的Settings，接着找到SSH and GPGkeys，将内容上文复制的id_rsa.pub的内容复制到SSHkeys。<br>注意：id_rsa是你这台电脑的私人秘钥，id_rsa.pub是公共秘钥，把这个公钥放在GitHub上，这样当你链接GitHub自己的账户时，它就会根据公钥匹配你的私钥，当能够相互匹配时，才能够顺利的通过git上传你的文件到GitHub上。<br>可以使用<code>ssh -T git@github.com</code>查看是否成功。</li>
+<!DOCTYPE html><html lang="en-us"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"><title>hexo搭建并部署到github | Hexo</title><meta name="description"><meta name="generator" content="Hexo"><meta name="author" content="John Doe"><meta name="keywords" content="sjaak van den berg, svdb, bitcoin, crypto, payment, integration, bitcoins, wordpress, betaling, webshop, front end, design, ontwerp, developer"><meta name="HandheldFriendly" content="True"><meta name="MobileOptimized" content="320"><meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1,user-scalable=0"><link rel="stylesheet" type="text/css" href="/styles/screen.css"><link rel="apple-touch-icon" sizes="57x57" href="/images/apple-touch-icon-57x57.png"><link rel="apple-touch-icon" sizes="60x60" href="/images/apple-touch-icon-60x60.png"><link rel="apple-touch-icon" sizes="72x72" href="/images/apple-touch-icon-72x72.png"><link rel="apple-touch-icon" sizes="76x76" href="/images/apple-touch-icon-76x76.png"><link rel="apple-touch-icon" sizes="114x114" href="/images/apple-touch-icon-114x114.png"><link rel="apple-touch-icon" sizes="120x120" href="/images/apple-touch-icon-120x120.png"><link rel="apple-touch-icon" sizes="144x144" href="/images/apple-touch-icon-144x144.png"><link rel="apple-touch-icon" sizes="152x152" href="/images/apple-touch-icon-152x152.png"><link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-180x180.png"><link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16.png"><link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32.png"><link rel="icon" type="image/png" sizes="96x96" href="/images/favicon-96x96.png"><link rel="icon" type="image/png" sizes="160x160" href="/images/favicon-160x160.png"><link rel="icon" type="image/png" sizes="192x192" href="/images/favicon-192x192.png"><meta name="msapplication-TileColor" content="#121315"><meta name="msapplication-TileImage" content="/images/mstile-144x144.png"></head><body itemscope itemtype="https://schema.org/WebPage"><header itemscope itemtype="https://schema.org/WPHeader"><a href="/"><img src="/images/svdb.png" alt="Hexo" title="Hexo"></a><h1><a href="/" alt="Hexo" title="Hexo" itemprop="headline">Hexo</a></h1><p itemprop="description"></p><nav itemscope itemtype="https://schema.org/SiteNavigationElement"><ul><li itemprop="name"><a href="/" alt="Home" title="Home" itemprop="url">Home</a></li><li itemprop="name"><a href="/articles" alt="Articles" title="Articles" itemprop="url">Articles</a></li><li itemprop="name"><a href="/about" alt="About" title="About" itemprop="url">About</a></li></ul></nav><div class="space"></div></header><main itemscope itemtype="https://schema.org/Blog"><article class="full"><h1 itemprop="headline">hexo搭建并部署到github</h1><span class="post-meta">Published on<time itemprop="datePublished" datetime="2019-02-27T06:03:06.000Z"> Wednesday, February 27th 2019 at 14:03</time><br>Last updated on<time itemprop="dateModified" datetime="2019-02-27T06:03:06.000Z"> Thursday, February 28th 2019 at 10:28</time></span><h6>1. 安装Git</h6>
+<h6>2. 安装Node.js</h6>
+<h6>3. 安装Hexo</h6>
+<p>以上三步参考hexo官网文档即可；以windows系统为例，下载安装Git和Node.js之后，可以直接在系统自带的命令行里运行<code>npm install -g hexo-cli</code>安装hexo。</p>
+<h6>4. Github创建仓库</h6>
+<p>创建仓库时，如果打算使用Github Pages 托管自定义域名的网站，建议仓库的名字使用：你的Github用户名.github.io格式。创建成功之后，顺带复制一下ssh连接的地址，为下步做准备。</p>
+<h6>5. 生成SSH添加到Github</h6>
+<ol>
+<li>建立ssh连接之前，先使用git命令行关联一下Github的账户，不只是现在用，别的软件（比如pycharm、vs）要使用Github托管代码时都要这么做。</li>
 </ol>
-<h6 id="6-将hexo部署到Github"><a href="#6-将hexo部署到Github" class="headerlink" title="6. 将hexo部署到Github"></a>6. 将hexo部署到Github</h6><ol>
-<li><p>找到安装hexo的文件夹的更目录里的_config.yml文件</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">deploy:</span><br><span class="line">     type: git</span><br><span class="line">     repo: git@github.com:YourgithubName/YourgithubName.github.io.git</span><br><span class="line">     branch: master</span><br></pre></td></tr></table></figure>
-<p>注意：我看到很多教程里repo使用的格式是： repo: <a href="https://github.com/YourgithubName/YourgithubName.github.io.git" target="_blank" rel="noopener">https://github.com/YourgithubName/YourgithubName.github.io.git</a> ，我设置的时候没有成功，后来使用这个格式成功了，要问为什么，我也说不清。（手动笑脸）</p>
+<pre><code><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">git config --global user.name &quot;yourname&quot;</span><br><span class="line">git config --global user.email &quot;youremail&quot;</span><br></pre></td></tr></table></figure>
+</code></pre>
+<ol start="2">
+<li>然后创建ssh：<code>ssh-keygen -t rsa -C &quot;youremail&quot;</code> ,创建成功后，在c盘你的用户名的文件夹下会创建一个.ssh的文件夹，将里面的id_rsa.pub的内容复制下来。
+注意：有可能id_rsa.pub文件打不开，即使使用微软publisher也打不开，没关系，使用安装了publisher的电脑上的word也能打开</li>
+<li>最后，找到Github网站右上角用户图标下拉栏里的Settings，接着找到SSH and GPGkeys，将内容上文复制的id_rsa.pub的内容复制到SSHkeys。
+注意：id_rsa是你这台电脑的私人秘钥，id_rsa.pub是公共秘钥，把这个公钥放在GitHub上，这样当你链接GitHub自己的账户时，它就会根据公钥匹配你的私钥，当能够相互匹配时，才能够顺利的通过git上传你的文件到GitHub上。
+可以使用<code>ssh -T git@github.com</code>查看是否成功。</li>
+</ol>
+<h6>6. 将hexo部署到Github</h6>
+<ol>
+<li>找到安装hexo的文件夹的更目录里的_config.yml文件
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">deploy:</span><br><span class="line">     type: git</span><br><span class="line">     repo: git@github.com:YourgithubName/YourgithubName.github.io.git</span><br><span class="line">     branch: master</span><br></pre></td></tr></table></figure></li>
+</ol>
+<pre><code>注意：我看到很多教程里repo使用的格式是： repo: https://github.com/YourgithubName/YourgithubName.github.io.git ，我设置的时候没有成功，后来使用这个格式成功了，要问为什么，我也说不清。（手动笑脸）
+</code></pre>
+<ol start="2">
+<li>
+<p>安装deploy-git,这才能使用命令部署到Github
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install hexo-deployer-git --save</span><br></pre></td></tr></table></figure></p>
 </li>
-<li><p>安装deploy-git,这才能使用命令部署到Github</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install hexo-deployer-git --save</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>最后：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">hexo g</span><br><span class="line">hexo d</span><br></pre></td></tr></table></figure>
+<li>
+<p>最后：
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">hexo g</span><br><span class="line">hexo d</span><br></pre></td></tr></table></figure></p>
 </li>
 </ol>
-<h6 id="7-申请域名并关联到Github-Pages"><a href="#7-申请域名并关联到Github-Pages" class="headerlink" title="7. 申请域名并关联到Github Pages"></a>7. 申请域名并关联到Github Pages</h6><ol>
-<li><p>其实现在你就已经可以访问你的网站了，<a href="http://yourname.github.io" target="_blank" rel="noopener">http://yourname.github.io</a> ，但是你可以申请一个个性化的域名，然后将这个域名指向你的这个Github托管的网站（<a href="http://yourname.github.io）。购买域名，我使用的阿里云。" target="_blank" rel="noopener">http://yourname.github.io）。购买域名，我使用的阿里云。</a></p>
+<h6>7. 申请域名并关联到Github Pages</h6>
+<ol>
+<li>
+<p>其实现在你就已经可以访问你的网站了，http://yourname.github.io ，但是你可以申请一个个性化的域名，然后将这个域名指向你的这个Github托管的网站（http://yourname.github.io）。购买域名，我使用的阿里云。</p>
 </li>
-<li><p>申请好域名之后，首先要注意，域名的状态是否为正常，我也曾因为没有注意到‘未实名认证’这个问题，导致域名一直没有正常使用。</p>
+<li>
+<p>申请好域名之后，首先要注意，域名的状态是否为正常，我也曾因为没有注意到‘未实名认证’这个问题，导致域名一直没有正常使用。</p>
 </li>
-<li><p>域名申请并且状态正常之后，就要配置域名了，就是阿里云里的解析域名。解析域名一共要配置两个地方。<br>[1]. 要配置CNAME,就是将域名指向另一个域名，我理解的就是将我在阿里云申请的域名 <a href="http://www.loveleo.cn" target="_blank" rel="noopener">www.loveleo.cn</a> 指向Github托管的那个域名 <a href="http://yourname.github.io" target="_blank" rel="noopener">http://yourname.github.io</a> 。怎么配置呢，添加记录–记录类型为CNAME–主机记录为www–解析路线为默认，记录值为 <a href="http://yourname.github.io" target="_blank" rel="noopener">http://yourname.github.io</a> –TTL：10。<br> [2]. 要配置的第二个记录，就是将你申请的域名指向你的服务器的ip地址，你的服务器的ip地址在哪儿呢，就是Github Pages服务器的地址。其实在设置这个地址时，我在网上的攻略里看到了很多地址，可是设置了之后，Github Pages一直发邮件报错，The page build completed successfully, but returned the following warning for the “master” branch:The custom domain for your GitHub Pages site is pointed at an outdated IP address. You must update your site’s DNS records if you’d like it to be available via your custom domain.说我设置了一个过期的地址，要我更新地址。其实这个地址不需要在网上查找，只需要使用ping命令，ping一下你的 yourname.github.io <code>ping yourname.github.io</code>就可以得到你的 Github Pages的服务器地址了。所以，第二个地址可以这么设置，记录类型A将域名指向一个ipv4地址–主机记录@–解析线路默认–记录值就是你的Github Pages服务器的地址–TTL10。</p>
+<li>
+<p>域名申请并且状态正常之后，就要配置域名了，就是阿里云里的解析域名。解析域名一共要配置两个地方。
+[1]. 要配置CNAME,就是将域名指向另一个域名，我理解的就是将我在阿里云申请的域名 www.loveleo.cn 指向Github托管的那个域名 http://yourname.github.io 。怎么配置呢，添加记录--记录类型为CNAME--主机记录为www--解析路线为默认，记录值为 http://yourname.github.io --TTL：10。
+[2]. 要配置的第二个记录，就是将你申请的域名指向你的服务器的ip地址，你的服务器的ip地址在哪儿呢，就是Github Pages服务器的地址。其实在设置这个地址时，我在网上的攻略里看到了很多地址，可是设置了之后，Github Pages一直发邮件报错，The page build completed successfully, but returned the following warning for the &quot;master&quot; branch:The custom domain for your GitHub Pages site is pointed at an outdated IP address. You must update your site's DNS records if you'd like it to be available via your custom domain.说我设置了一个过期的地址，要我更新地址。其实这个地址不需要在网上查找，只需要使用ping命令，ping一下你的 yourname.github.io <code>ping yourname.github.io</code>就可以得到你的 Github Pages的服务器地址了。所以，第二个地址可以这么设置，记录类型A将域名指向一个ipv4地址--主机记录@--解析线路默认--记录值就是你的Github Pages服务器的地址--TTL10。</p>
 </li>
-<li><p>登录GitHub，进入之前创建的仓库，点击settings，设置Custom domain，输入你的域名即可。</p>
+<li>
+<p>登录GitHub，进入之前创建的仓库，点击settings，设置Custom domain，输入你的域名即可。</p>
 </li>
-<li><p>在你创建的安装文件夹下找到source，新建一个CNAME的文件，写上申请的域名，注意，不需要填www。</p>
+<li>
+<p>在你创建的安装文件夹下找到source，新建一个CNAME的文件，写上申请的域名，注意，不需要填www。</p>
 </li>
-<li><p>最后：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">hexo clean</span><br><span class="line">hexo g</span><br><span class="line">hexo d</span><br></pre></td></tr></table></figure>
+<li>
+<p>最后：</p>
+<p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">hexo clean</span><br><span class="line">hexo g</span><br><span class="line">hexo d</span><br></pre></td></tr></table></figure></p>
 </li>
 </ol>
-<h6 id="8-发布文章"><a href="#8-发布文章" class="headerlink" title="8. 发布文章"></a>8. 发布文章</h6><p>   <em>总结：这是第一次使用hexo搭建个人博客，走了很多弯路，也在网上查了很多资料，主要是参考了知乎上《hexo超完整的搭建教程，让你拥有一个专属个人博客》这篇攻略，然后根据自己实际的搭建过程中遇到的问题写的这个攻略，希望能给同样开始使用hexo的人一点帮助，限于本人水平有限，还有跟多问题不是很明白，攻略写的也不是很专业，希望各位多提出宝贵意见</em></p>
+<h6>8. 发布文章</h6>
+<p><em>总结：这是第一次使用hexo搭建个人博客，走了很多弯路，也在网上查了很多资料，主要是参考了知乎上《hexo超完整的搭建教程，让你拥有一个专属个人博客》这篇攻略，然后根据自己实际的搭建过程中遇到的问题写的这个攻略，希望能给同样开始使用hexo的人一点帮助，限于本人水平有限，还有跟多问题不是很明白，攻略写的也不是很专业，希望各位多提出宝贵意见</em></p>
 </article></main></body></html>

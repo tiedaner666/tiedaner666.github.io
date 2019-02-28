@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.8.0">
+    <!-- so meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="description" content="1. 安装Git2. 安装Node.js3. 安装Hexo 以上三步参考hexo官网文档即可；以windows系统为例，下载安装Git和Node.js之后，可以直接在系统自带的命令行里运行npm install -g hexo-cli安装hexo。 4. Github创建仓库创建仓库时，如果打算使用Github Pages 托管自定义域名的网站，建议仓库的名字使用：你的Github用户名.gith">
+<meta property="og:type" content="article">
+<meta property="og:title" content="hexo搭建并部署到github">
+<meta property="og:url" content="http://yoursite.com/2019/02/27/hexo搭建并部署到github/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="1. 安装Git2. 安装Node.js3. 安装Hexo 以上三步参考hexo官网文档即可；以windows系统为例，下载安装Git和Node.js之后，可以直接在系统自带的命令行里运行npm install -g hexo-cli安装hexo。 4. Github创建仓库创建仓库时，如果打算使用Github Pages 托管自定义域名的网站，建议仓库的名字使用：你的Github用户名.gith">
+<meta property="og:locale" content="default">
+<meta property="og:updated_time" content="2019-02-28T00:27:32.711Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="hexo搭建并部署到github">
+<meta name="twitter:description" content="1. 安装Git2. 安装Node.js3. 安装Hexo 以上三步参考hexo官网文档即可；以windows系统为例，下载安装Git和Node.js之后，可以直接在系统自带的命令行里运行npm install -g hexo-cli安装hexo。 4. Github创建仓库创建仓库时，如果打算使用Github Pages 托管自定义域名的网站，建议仓库的名字使用：你的Github用户名.gith">
+    
+    
+        
+          
+              <link rel="shortcut icon" href="/images/favicon.ico">
+          
+        
+        
+          
+            <link rel="icon" type="image/png" href="/images/favicon-192x192.png" sizes="192x192">
+          
+        
+        
+          
+            <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+          
+        
+    
+    <!-- title -->
+    <title>hexo搭建并部署到github</title>
+    <!-- styles -->
+    <link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" href="/lib/meslo-LG/styles.css">
+    <link rel="stylesheet" href="/lib/justified-gallery/justifiedGallery.min.css">
+    <link rel="stylesheet" href="/css/style.css">
+    <!-- rss -->
+    
+    
+    <!-- jquery -->
+    <script src="/lib/jquery/jquery.min.js"></script>
+</head>
+
+<body>
+    <div class="banner">
+<div id="blogtitel" class="blogtitel">Hexo</div>
+<ul id="wrapper" class="wrapper">
+  <div class="sun">
+    <div class="star"></div>
+  </div>
+  <div class="mercury">
+    <div class="planet">
+      <div class="shadow"></div>
+    </div>
+  </div>
+  <div class="venus">
+    <div class="planet">
+      <div class="shadow"></div>
+    </div>
+  </div>
+  <div class="earth">
+    <div class="planet"><div class="shadow"></div></div>
+  </div>
+  <div class="mars">
+    <div class="planet"><div class="shadow"></div></div>
+  </div>
+  <div class="jupiter">
+    <div class="planet"><div class="shadow"></div></div>
+  </div>
+</ul>
+</div>
+
+    <div class="background">
+      
+        <div id="header-post">
+  <a id="menu-icon" href="#"><i class="fa fa-bars fa-lg"></i></a>
+  <a id="menu-icon-tablet" href="#"><i class="fa fa-bars fa-lg"></i></a>
+  <a id="top-icon-tablet" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i class="fa fa-chevron-up fa-lg"></i></a>
+  <span id="menu">
+    <span id="nav">
+      <ul>
+         
+          <li><a href="/home/">Home</a></li>
+         
+          <li><a href="/about/">About</a></li>
+         
+          <li><a href="/archives/">Writing</a></li>
+         
+          <li><a href="http://github.com/tzvetkov75">Projects</a></li>
+        
+      </ul>
+    </span>
+    <br>
+    <span id="actions">
+      <ul>
+        
+        
+        <li><a class="icon" href="/2019/02/26/tcp-ip详解/"><i class="fa fa-chevron-right" aria-hidden="true" onmouseover="$("#i-next").toggle();" onmouseout="$("#i-next").toggle();"></i></a></li>
+        
+        <li><a class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa fa-chevron-up" aria-hidden="true" onmouseover="$("#i-top").toggle();" onmouseout="$("#i-top").toggle();"></i></a></li>
+        <li><a class="icon" href="#"><i class="fa fa-share-alt" aria-hidden="true" onmouseover="$("#i-share").toggle();" onmouseout="$("#i-share").toggle();" onclick="$("#share").toggle();return false;"></i></a></li>
+      </ul>
+      <span id="i-prev" class="info" style="display:none;">Previous post</span>
+      <span id="i-next" class="info" style="display:none;">Next post</span>
+      <span id="i-top" class="info" style="display:none;">Back to top</span>
+      <span id="i-share" class="info" style="display:none;">Share post</span>
+    </span>
+    <br>
+    <div id="share" style="display: none">
+      <ul>
+  <li><a class="icon" href="http://www.facebook.com/sharer.php?u=http://yoursite.com/2019/02/27/hexo搭建并部署到github/"><i class="fa fa-facebook " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://twitter.com/share?url=http://yoursite.com/2019/02/27/hexo搭建并部署到github/&text=hexo搭建并部署到github"><i class="fa fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=http://yoursite.com/2019/02/27/hexo搭建并部署到github/&title=hexo搭建并部署到github"><i class="fa fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=http://yoursite.com/2019/02/27/hexo搭建并部署到github/&is_video=false&description=hexo搭建并部署到github"><i class="fa fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=hexo搭建并部署到github&body=Check out this article: http://yoursite.com/2019/02/27/hexo搭建并部署到github/"><i class="fa fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://getpocket.com/save?url=http://yoursite.com/2019/02/27/hexo搭建并部署到github/&title=hexo搭建并部署到github"><i class="fa fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://reddit.com/submit?url=http://yoursite.com/2019/02/27/hexo搭建并部署到github/&title=hexo搭建并部署到github"><i class="fa fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=http://yoursite.com/2019/02/27/hexo搭建并部署到github/&title=hexo搭建并部署到github"><i class="fa fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://digg.com/submit?url=http://yoursite.com/2019/02/27/hexo搭建并部署到github/&title=hexo搭建并部署到github"><i class="fa fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.tumblr.com/share/link?url=http://yoursite.com/2019/02/27/hexo搭建并部署到github/&name=hexo搭建并部署到github&description="><i class="fa fa-tumblr " aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+    <div id="toc">
+      <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-安装Git"><span class="toc-number">1.</span> <span class="toc-text">1. 安装Git</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-安装Node-js"><span class="toc-number">2.</span> <span class="toc-text">2. 安装Node.js</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-安装Hexo"><span class="toc-number">3.</span> <span class="toc-text">3. 安装Hexo</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-Github创建仓库"><span class="toc-number">4.</span> <span class="toc-text">4. Github创建仓库</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5-生成SSH添加到Github"><span class="toc-number">5.</span> <span class="toc-text">5. 生成SSH添加到Github</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#6-将hexo部署到Github"><span class="toc-number">6.</span> <span class="toc-text">6. 将hexo部署到Github</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#7-申请域名并关联到Github-Pages"><span class="toc-number">7.</span> <span class="toc-text">7. 申请域名并关联到Github Pages</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#8-发布文章"><span class="toc-number">8.</span> <span class="toc-text">8. 发布文章</span></a></li></ol>
+    </div>
+  </span>
+</div>
+
+      
+      <div class="content index width mx-auto px2 my4">
+          
+          <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+  <header>
+    
+    <h1 class="posttitle" itemprop="name headline">
+        hexo搭建并部署到github
+    </h1>
+
+
+
+    <div class="meta">
+      <span class="author" itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <span itemprop="name">Hexo</span>
+      </span>
+      
+    <div class="postdate">
+        <time datetime="2019-02-27T06:03:06.000Z" itemprop="datePublished">2019-02-27</time>
+    </div>
+
+
+      
+
+    </div>
+  </header>
+  
+
+  <div class="content" itemprop="articleBody">
+    <h3 id="1-安装Git"><a href="#1-安装Git" class="headerlink" title="1. 安装Git"></a>1. 安装Git</h3><h3 id="2-安装Node-js"><a href="#2-安装Node-js" class="headerlink" title="2. 安装Node.js"></a>2. 安装Node.js</h3><h3 id="3-安装Hexo"><a href="#3-安装Hexo" class="headerlink" title="3. 安装Hexo"></a>3. 安装Hexo</h3><p> 以上三步参考hexo官网文档即可；以windows系统为例，下载安装Git和Node.js之后，可以直接在系统自带的命令行里运行<code>npm install -g hexo-cli</code>安装hexo。</p>
+<h3 id="4-Github创建仓库"><a href="#4-Github创建仓库" class="headerlink" title="4. Github创建仓库"></a>4. Github创建仓库</h3><p>创建仓库时，如果打算使用Github Pages 托管自定义域名的网站，建议仓库的名字使用：你的Github用户名.github.io格式。创建成功之后，顺带复制一下ssh连接的地址，为下步做准备。</p>
+<h3 id="5-生成SSH添加到Github"><a href="#5-生成SSH添加到Github" class="headerlink" title="5. 生成SSH添加到Github"></a>5. 生成SSH添加到Github</h3><ol>
+<li><p>建立ssh连接之前，先使用git命令行关联一下Github的账户，不只是现在用，别的软件（比如pycharm、vs）要使用Github托管代码时都要这么做。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">git config --global user.name &quot;yourname&quot;</span><br><span class="line">git config --global user.email &quot;youremail&quot;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>然后创建ssh：<code>ssh-keygen -t rsa -C &quot;youremail&quot;</code> ,创建成功后，在c盘你的用户名的文件夹下会创建一个.ssh的文件夹，将里面的id_rsa.pub的内容复制下来。<br>注意：有可能id_rsa.pub文件打不开，即使使用微软publisher也打不开，没关系，使用安装了publisher的电脑上的word也能打开</p>
+</li>
+<li>最后，找到Github网站右上角用户图标下拉栏里的Settings，接着找到SSH and GPGkeys，将内容上文复制的id_rsa.pub的内容复制到SSHkeys。<br>注意：id_rsa是你这台电脑的私人秘钥，id_rsa.pub是公共秘钥，把这个公钥放在GitHub上，这样当你链接GitHub自己的账户时，它就会根据公钥匹配你的私钥，当能够相互匹配时，才能够顺利的通过git上传你的文件到GitHub上。<br>可以使用<code>ssh -T git@github.com</code>查看是否成功。<h3 id="6-将hexo部署到Github"><a href="#6-将hexo部署到Github" class="headerlink" title="6. 将hexo部署到Github"></a>6. 将hexo部署到Github</h3></li>
+<li><p>找到安装hexo的文件夹的更目录里的_config.yml文件</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">deploy:</span><br><span class="line">     type: git</span><br><span class="line">     repo: git@github.com:YourgithubName/YourgithubName.github.io.git</span><br><span class="line">     branch: master</span><br></pre></td></tr></table></figure>
+<p>注意：我看到很多教程里repo使用的格式是： repo: <a href="https://github.com/YourgithubName/YourgithubName.github.io.git" target="_blank" rel="noopener">https://github.com/YourgithubName/YourgithubName.github.io.git</a> ，我设置的时候没有成功，后来使用这个格式成功了，要问为什么，我也说不清。（手动笑脸）</p>
+</li>
+<li><p>安装deploy-git,这才能使用命令部署到Github</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install hexo-deployer-git --save</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>最后：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">hexo g</span><br><span class="line">hexo d</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<h3 id="7-申请域名并关联到Github-Pages"><a href="#7-申请域名并关联到Github-Pages" class="headerlink" title="7. 申请域名并关联到Github Pages"></a>7. 申请域名并关联到Github Pages</h3><ol>
+<li><p>其实现在你就已经可以访问你的网站了，<a href="http://yourname.github.io" target="_blank" rel="noopener">http://yourname.github.io</a> ，但是你可以申请一个个性化的域名，然后将这个域名指向你的这个Github托管的网站（<a href="http://yourname.github.io）。购买域名，我使用的阿里云。" target="_blank" rel="noopener">http://yourname.github.io）。购买域名，我使用的阿里云。</a></p>
+</li>
+<li><p>申请好域名之后，首先要注意，域名的状态是否为正常，我也曾因为没有注意到‘未实名认证’这个问题，导致域名一直没有正常使用。</p>
+</li>
+<li><p>域名申请并且状态正常之后，就要配置域名了，就是阿里云里的解析域名。解析域名一共要配置两个地方。<br> [1]. 要配置CNAME,就是将域名指向另一个域名，我理解的就是将我在阿里云申请的域名 <a href="http://www.loveleo.cn" target="_blank" rel="noopener">www.loveleo.cn</a> 指向Github托管的那个域名 <a href="http://yourname.github.io" target="_blank" rel="noopener">http://yourname.github.io</a> 。怎么配置呢，添加记录–记录类型为CNAME–主机记录为www–解析路线为默认，记录值为 <a href="http://yourname.github.io" target="_blank" rel="noopener">http://yourname.github.io</a> –TTL：10。<br> [2]. 要配置的第二个记录，就是将你申请的域名指向你的服务器的ip地址，你的服务器的ip地址在哪儿呢，就是Github Pages服务器的地址。其实在设置这个地址时，我在网上的攻略里看到了很多地址，可是设置了之后，Github Pages一直发邮件报错，The page build completed successfully, but returned the following warning for the <code>master</code> branch:The custom domain for your GitHub Pages site is pointed at an outdated IP address. You must update your site’s DNS records if you’d like it to be available via your custom domain.说我设置了一个过期的地址，要我更新地址。其实这个地址不需要在网上查找，只需要使用ping命令，ping一下你的 yourname.github.io <code>ping yourname.github.io</code>就可以得到你的 Github Pages的服务器地址了。所以，第二个地址可以这么设置，记录类型A将域名指向一个ipv4地址–主机记录@–解析线路默认–记录值就是你的Github Pages服务器的地址–TTL10。</p>
+</li>
+<li><p>登录GitHub，进入之前创建的仓库，点击settings，设置Custom domain，输入你的域名即可。</p>
+</li>
+<li><p>在你创建的安装文件夹下找到source，新建一个CNAME的文件，写上申请的域名，注意，不需要填www。</p>
+</li>
+<li><p>最后：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">hexo clean</span><br><span class="line">hexo g</span><br><span class="line">hexo d</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<h3 id="8-发布文章"><a href="#8-发布文章" class="headerlink" title="8. 发布文章"></a>8. 发布文章</h3>
+  </div>
+</article>
+
+
+
+      </div>
+      
+       <div id="footer-post-container">
+  <div id="footer-post">
+
+    <div id="nav-footer" style="display: none">
+      <ul>
+         
+          <li><a href="/home/">Home</a></li>
+         
+          <li><a href="/about/">About</a></li>
+         
+          <li><a href="/archives/">Writing</a></li>
+         
+          <li><a href="http://github.com/tzvetkov75">Projects</a></li>
+        
+      </ul>
+    </div>
+
+    <div id="toc-footer" style="display: none">
+      <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-安装Git"><span class="toc-number">1.</span> <span class="toc-text">1. 安装Git</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-安装Node-js"><span class="toc-number">2.</span> <span class="toc-text">2. 安装Node.js</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-安装Hexo"><span class="toc-number">3.</span> <span class="toc-text">3. 安装Hexo</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-Github创建仓库"><span class="toc-number">4.</span> <span class="toc-text">4. Github创建仓库</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5-生成SSH添加到Github"><span class="toc-number">5.</span> <span class="toc-text">5. 生成SSH添加到Github</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#6-将hexo部署到Github"><span class="toc-number">6.</span> <span class="toc-text">6. 将hexo部署到Github</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#7-申请域名并关联到Github-Pages"><span class="toc-number">7.</span> <span class="toc-text">7. 申请域名并关联到Github Pages</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#8-发布文章"><span class="toc-number">8.</span> <span class="toc-text">8. 发布文章</span></a></li></ol>
+    </div>
+
+    <div id="share-footer" style="display: none">
+      <ul>
+  <li><a class="icon" href="http://www.facebook.com/sharer.php?u=http://yoursite.com/2019/02/27/hexo搭建并部署到github/"><i class="fa fa-facebook fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://twitter.com/share?url=http://yoursite.com/2019/02/27/hexo搭建并部署到github/&text=hexo搭建并部署到github"><i class="fa fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=http://yoursite.com/2019/02/27/hexo搭建并部署到github/&title=hexo搭建并部署到github"><i class="fa fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=http://yoursite.com/2019/02/27/hexo搭建并部署到github/&is_video=false&description=hexo搭建并部署到github"><i class="fa fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=hexo搭建并部署到github&body=Check out this article: http://yoursite.com/2019/02/27/hexo搭建并部署到github/"><i class="fa fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://getpocket.com/save?url=http://yoursite.com/2019/02/27/hexo搭建并部署到github/&title=hexo搭建并部署到github"><i class="fa fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://reddit.com/submit?url=http://yoursite.com/2019/02/27/hexo搭建并部署到github/&title=hexo搭建并部署到github"><i class="fa fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=http://yoursite.com/2019/02/27/hexo搭建并部署到github/&title=hexo搭建并部署到github"><i class="fa fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://digg.com/submit?url=http://yoursite.com/2019/02/27/hexo搭建并部署到github/&title=hexo搭建并部署到github"><i class="fa fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.tumblr.com/share/link?url=http://yoursite.com/2019/02/27/hexo搭建并部署到github/&name=hexo搭建并部署到github&description="><i class="fa fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+
+    <div id="actions-footer">
+      <ul>
+        <li id="toc"><a class="icon" href="#" onclick="$("#toc-footer").toggle();return false;"><i class="fa fa-list fa-lg" aria-hidden="true"></i> TOC</a></li>
+        <li id="share"><a class="icon" href="#" onclick="$("#share-footer").toggle();return false;"><i class="fa fa-share-alt fa-lg" aria-hidden="true"></i> Share</a></li>
+        <li id="top" style="display:none"><a class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa fa-chevron-up fa-lg" aria-hidden="true"></i> Top</a></li>
+        <li id="menu"><a class="icon" href="#" onclick="$("#nav-footer").toggle();return false;"><i class="fa fa-bars fa-lg" aria-hidden="true"></i> Menu</a></li>
+      </ul>
+    </div>
+
+  </div>
+</div>
+
+      
+      <footer id="footer">
+  <div class="footer-left">
+    Copyright &copy; 2019 John Doe
+  </div>
+  <div class="footer-right">
+    <nav>
+      <ul>
+         
+          <li><a href="/home/">Home</a></li>
+         
+          <li><a href="/about/">About</a></li>
+         
+          <li><a href="/archives/">Writing</a></li>
+         
+          <li><a href="http://github.com/tzvetkov75">Projects</a></li>
+        
+      </ul>
+    </nav>
+  </div>
+</footer>
+
+      <script src="/lib/justified-gallery/jquery.justifiedGallery.min.js"></script>
+<script src="/js/main.js"></script>
+<!-- Google Analytics -->
+
+<!-- Disqus Comments -->
+
+
+    </div>
+</body>
+</html>
